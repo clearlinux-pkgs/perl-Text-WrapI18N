@@ -4,12 +4,13 @@
 #
 Name     : perl-Text-WrapI18N
 Version  : 0.06
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-WrapI18N-0.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-WrapI18N-0.06.tar.gz
-Summary  : Line wrapping module with support for multibyte, fullwidth, and combining characters and languages without whitespaces between words
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Artistic-1.0
+Requires: perl-Text-WrapI18N-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Text::CharWidth)
 
@@ -31,20 +32,29 @@ Summary: dev components for the perl-Text-WrapI18N package.
 Group: Development
 Provides: perl-Text-WrapI18N-devel = %{version}-%{release}
 Requires: perl-Text-WrapI18N = %{version}-%{release}
-Requires: perl-Text-WrapI18N = %{version}-%{release}
 
 %description dev
 dev components for the perl-Text-WrapI18N package.
 
 
+%package perl
+Summary: perl components for the perl-Text-WrapI18N package.
+Group: Default
+Requires: perl-Text-WrapI18N = %{version}-%{release}
+
+%description perl
+perl components for the perl-Text-WrapI18N package.
+
+
 %prep
 %setup -q -n Text-WrapI18N-0.06
+cd %{_builddir}/Text-WrapI18N-0.06
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -54,7 +64,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -74,8 +84,11 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Text/WrapI18N.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Text::WrapI18N.3
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Text/WrapI18N.pm
