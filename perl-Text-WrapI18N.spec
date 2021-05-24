@@ -4,7 +4,7 @@
 #
 Name     : perl-Text-WrapI18N
 Version  : 0.06
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-WrapI18N-0.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/K/KU/KUBOTA/Text-WrapI18N-0.06.tar.gz
 Summary  : No detailed summary available
